@@ -19,13 +19,15 @@
 /**************************************************************** */
 
 /**SECOND METHOD */
-let str = "hello there";
-let arrayStr = str.split("").join("");
-console.log(typeof arrayStr);
+// let str = "hello there";
+// let arrayStr = str.split("").join("");
+// let newString = "";
+// console.log(typeof arrayStr);
 
 // for (let i = arrayStr.length - 1; i >= 0; i--) {
-//   console.log(arrayStr[i]);
+//   newString += str[i];
 // }
+// console.log(newString);
 
 // for (let i = str.length - 1; i >= 0; i--) {
 //   console.log(str.charAt(i));
