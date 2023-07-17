@@ -61,18 +61,28 @@ h6 {
 
 .scoring-board {
   border: 1px solid crimson;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.scoring-board .score {
-  border: 1px solid green;
 }
 
 .img-block {
   border: 1px solid darkblue;
 }
 
+button {
+  cursor: pointer;
+  border: 1px solid crimson;
+  padding: 5px 20px;
+  border-radius: 2px;
+  transition: 0.1s ease-out;
+}
+button:hover {
+  background: crimson;
+  color: white;
+}
+
 .active {
+  visibility: visible;
+}
+
+.hide {
   visibility: hidden;
 }/*# sourceMappingURL=style.css.map */

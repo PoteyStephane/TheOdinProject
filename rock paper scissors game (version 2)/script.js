@@ -49,7 +49,6 @@ function checkEndGame() {
     computerCountScore === 3 ||
     gameCountScore === 5
   ) {
-    console.log("GAME OVER");
     checkWinner();
     gameEnd = true;
   }

@@ -8,10 +8,6 @@
 
 .scoring-board {
   border: 1px solid crimson;
-  @include flex-center;
-  .score {
-    border: 1px solid green;
-  }
 }
 
 .img-block {
@@ -19,8 +15,22 @@
 }
 
 button {
+  cursor: pointer;
+  border: 1px solid crimson;
+  padding: 5px 20px;
+  border-radius: 2px;
+  transition: 0.1s ease-out;
+
+  &:hover {
+    background: crimson;
+    color: white;
+  }
 }
 
 .active {
+  visibility: visible;
+}
+
+.hide {
   visibility: hidden;
 }
