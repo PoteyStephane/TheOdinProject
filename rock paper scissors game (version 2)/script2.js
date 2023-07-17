@@ -1,36 +1,42 @@
 let endGame = false;
-
-let playerScoreCount = 0,
-  computerScoreCount = 0,
-  gameRoundCount = 0;
-
-const mainGamePage = document.querySelector(".main-game");
-const playerInformationPage = document.querySelector(".player-information");
-
-let inputPlayerName = document.getElementById("inputPlayerName");
-let playerName = document.getElementById("playerName");
+let playerScoreCount = 0;
+let computerScoreCount = 0;
+let gameRoundCount = 0;
 
 const myForm = document.getElementById("myForm");
+const mainGamePage = document.querySelector(".main-game");
+const playerInformationPage = document.querySelector(".player-information");
+const inputPlayerName = document.getElementById("inputPlayerName");
+const inputSelectOption = document.querySelector("select");
+const playerName = document.getElementById("playerName");
+const roundNumber = document.getElementById("round-number");
 
+//Text Elements
 const txtPlayerScore = document.getElementById("player-score");
 const txtComputerScore = document.getElementById("computer-score");
 const txtGameRoundScore = document.getElementById("played-game-count");
 const txtWinnerName = document.getElementById("winner-name");
+const txtRoundNumber = document.getElementById("round-number");
 
+//Buttons
 const btnsSelection = document.querySelectorAll(".btn-selection");
-const btnRock = document.getElementById("rock");
-const btnPaper = document.getElementById("paper");
-const btnScissors = document.getElementById("scissors");
 const btnRestart = document.getElementById("restart");
 
 const playerChoices = ["rock", "paper", "scissors"];
 const computerChoices = ["rock", "paper", "scissors"];
-
 const tieResult = "TIE";
 const playerResult = "PLAYER WON";
 const computerResult = "COMPUTER WON";
 
-mainGamePage.classList.add("hide");
+//Functions sections
+hideContent(mainGamePage);
+
+function hideContent(className) {
+  className.classList.add("hide");
+}
+function showContent(className) {
+  className.classList.remove("hide");
+}
 
 function getComputerChoice() {
   const randomChoice = Math.floor(Math.random() * computerChoices.length);
@@ -77,14 +83,28 @@ function checkWinner() {
 }
 
 function checkIfEndGame() {
-  if (
-    playerScoreCount === 3 ||
-    computerScoreCount === 3 ||
-    gameRoundCount === 5
-  ) {
-    checkWinner();
-    endGame = true;
-    btnRestart.classList.remove("hide");
+  const selectedIndexOption = inputSelectOption.selectedIndex;
+  if (selectedIndexOption === 1) {
+    if (
+      playerScoreCount === 2 ||
+      computerScoreCount === 2 ||
+      gameRoundCount === 3
+    ) {
+      checkWinner();
+      endGame = true;
+      showContent(btnRestart);
+    }
+  }
+  if (selectedIndexOption === 2) {
+    if (
+      playerScoreCount === 3 ||
+      computerScoreCount === 3 ||
+      gameRoundCount === 5
+    ) {
+      checkWinner();
+      endGame = true;
+      showContent(btnRestart);
+    }
   }
 }
 
@@ -103,27 +123,53 @@ function restarGame() {
   txtComputerScore.textContent = computerScoreCount;
   txtGameRoundScore.textContent = gameRoundCount;
   txtWinnerName.textContent = "";
-  playerInformationPage.classList.remove("hide");
-  mainGamePage.classList.add("hide");
-  btnRestart.classList.add("hide");
+  inputSelectOption.selectedIndex = 0;
+  showContent(playerInformationPage);
+  hideContent(mainGamePage);
+  hideContent(btnRestart);
   endGame = false;
-
-  btnsSelection.forEach((btn) => {
-    btn.addEventListener("click", playGame);
-  });
 }
 
-myForm.addEventListener("submit", (e) => {
+function validateOptions(e) {
   e.preventDefault();
-  playerName.textContent = inputPlayerName.value;
-  inputPlayerName.value = "";
-  mainGamePage.classList.remove("hide");
-  playerInformationPage.classList.add("hide");
-  btnRestart.classList.add("hide");
-});
+  const selectedIndexOption = inputSelectOption.selectedIndex;
+  if (
+    inputPlayerName.value !== "" &&
+    (selectedIndexOption === 1 || selectedIndexOption === 2)
+  ) {
+    playerName.textContent = inputPlayerName.value;
 
-btnsSelection.forEach((btn) => {
-  btn.addEventListener("click", playGame);
-});
+    inputPlayerName.value = "";
+    roundNumber.textContent = inputSelectOption.value;
+    showContent(mainGamePage);
+    hideContent(playerInformationPage);
+    hideContent(btnRestart);
+  } else {
+    alert("Please enter your name and chose number of round");
+    return;
+  }
+}
 
+// myForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const selectedIndexOption = inputSelectOption.selectedIndex;
+//   if (
+//     inputPlayerName.value !== "" &&
+//     (selectedIndexOption === 1 || selectedIndexOption === 2)
+//   ) {
+//     playerName.textContent = inputPlayerName.value;
+
+//     inputPlayerName.value = "";
+//     roundNumber.textContent = inputSelectOption.value;
+//     showContent(mainGamePage);
+//     hideContent(playerInformationPage);
+//     hideContent(btnRestart);
+//   } else {
+//     alert("Please enter your name and chose number of round");
+//     return;
+//   }
+// });
+
+myForm.addEventListener("submit", validateOptions);
+btnsSelection.forEach((btn) => btn.addEventListener("click", playGame));
 btnRestart.addEventListener("click", restarGame);

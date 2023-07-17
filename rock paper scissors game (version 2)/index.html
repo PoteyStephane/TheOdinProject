@@ -14,9 +14,14 @@
         <h2>put your name and type enter</h2>
         <form action="" id="myForm">
             <div class="player-inputName">
-                <input type="text" name="playerName" id="inputPlayerName" placeholder="player name">
+                <input type="text" name="" id="inputPlayerName" placeholder="player name">
             </div>
-            <input type="submit" hidden>
+            <select name="round" id="round-inputNumber">
+                <option value="">--Please choose your number of round</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+            </select>
+            <input type="submit" value="Enter">
         </form>
     </div>
 
@@ -34,8 +39,8 @@
             </div>
 
             <div class="score">
-                <h2>Game Played</h2>
-                <p id="played-game-count">0</p>
+                <h2>Round number : <span id="round-number"></span></h2>
+                <h2>Game Played : <span id="played-game-count"></span></h2>
             </div>
         </div>
 
