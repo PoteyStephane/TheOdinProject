@@ -42,6 +42,7 @@ textarea,
 select {
   font: inherit;
 }
+
 p,
 h1,
 h2,
@@ -51,3 +52,27 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
+.scoring-board,
+.img-block {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.scoring-board {
+  border: 1px solid crimson;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scoring-board .score {
+  border: 1px solid green;
+}
+
+.img-block {
+  border: 1px solid darkblue;
+}
+
+.active {
+  visibility: hidden;
+}/*# sourceMappingURL=style.css.map */

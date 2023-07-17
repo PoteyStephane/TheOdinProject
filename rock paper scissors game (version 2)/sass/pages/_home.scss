@@ -1,0 +1,26 @@
+@use "../abstracts/" as *;
+
+.scoring-board,
+.img-block {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.scoring-board {
+  border: 1px solid crimson;
+  @include flex-center;
+  .score {
+    border: 1px solid green;
+  }
+}
+
+.img-block {
+  border: 1px solid darkblue;
+}
+
+button {
+}
+
+.active {
+  visibility: hidden;
+}
